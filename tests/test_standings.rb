@@ -50,14 +50,20 @@ class TestStandings < Minitest::Test
     out = capture_io do
       @standings.to_s
     end
+
     assert_equal(expected_output, out)
   end
-  
-  # not sure if this makes sense...
+
+  def test_print_to_file
+    File.delete('./output-file.txt')
+    assert_equal(File.exists?('./output-file.txt'), false)
+  end
+
+  # TODO: test or get rid of your block craziness :)
   def test_to_s_with_block
   end
   
-  def test_print_to_file
-  end
+  
+  
   
 end
