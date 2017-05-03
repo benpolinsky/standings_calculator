@@ -43,5 +43,5 @@ if args.any?
     Game.new(line)
   end
   standings = Standings.new(games)
-  standings.print_to_file
+  standings.to_s
 end
