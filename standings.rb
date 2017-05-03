@@ -1,4 +1,20 @@
+# The Standings class is responsible for determining
+# how many points to award based on game results
+# 
+# Standings accepts one parameter, an array of +games+, 
+# which needs to respond to a few methods
+# 
+# Example
+# standings = Standings.new(games)
+
 class Standings
+
+  # @info returns an unsorted hash with teams as keys
+  # and their standings points as values
+  #
+  # example:
+  # {team_one: 4, team_two: 5, team_three: 1}
+  
   attr_reader :info
 
   OUTPUT_FILE_NAME = 'output-file.txt'
@@ -12,10 +28,19 @@ class Standings
     determine_standings
   end
   
+  # sorts the hash first by highest score, 
+  # second alphabetically according to a team's name
+  
   def ordered
     @info.sort_by {|k, v| [-v, k]}.to_h
   end
 
+  # Iterates through the ordered hash of standing info (@info)
+  # When no block is given, the method simply prints the standings
+  # one line at a time.
+  
+  # When a block is given, the method yields all necessary information
+  # to construct standings.  
   def each_info 
     ordered.each do |team_and_score|
       team = team_and_score[0]
@@ -28,12 +53,12 @@ class Standings
     end  
   end
   
+  # Simply calls #each_info
   def to_s
-    each_info do |place, team, score, ending|
-      p "#{place} #{team}, #{score} #{ending}"
-    end
+    each_info
   end
   
+  # Utilizes #each_info to print standings to a file
   def print_to_file
     each_info do |place, team, score, ending|
       write_line "#{place} #{team}, #{score} #{ending}"
@@ -43,7 +68,7 @@ class Standings
   private
   
   # Iterates through each game and awards points
-  # based on its result
+  # based on the result.  Populates @info
   
   def determine_standings
     @games.each do |game|
