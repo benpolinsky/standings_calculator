@@ -7,7 +7,7 @@ the standings of teams based a list of properly formatted game results.
 ### Usage: 
 
 ```
-% ruby standings_calulator.rb games-input.txt
+% ruby standings_calculator.rb sample-input.txt
 ```
 
 Where ```games-input.txt``` is a simple textfile containing the results of one game per line, formatted like so:
