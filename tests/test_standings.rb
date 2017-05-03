@@ -75,8 +75,8 @@ class TestStandings < Minitest::Test
   end
 
   # TODO: test or get rid of your block craziness :)
-  def test_to_s_with_block
-  end
+  # def test_to_s_with_block
+  # end
   
   
   

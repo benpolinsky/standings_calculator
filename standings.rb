@@ -6,6 +6,14 @@
 # 
 # Example
 # standings = Standings.new(games)
+# 
+# To print to console:
+# standings.to_s
+# 
+# To print to file:
+# standings.print_to_file
+#
+
 
 class Standings
 
@@ -59,6 +67,7 @@ class Standings
   end
   
   # Utilizes #each_info to print standings to a file
+  # Probably rename to #to_file
   def print_to_file
     each_info do |place, team, score, ending|
       write_line "#{place} #{team}, #{score} #{ending}"

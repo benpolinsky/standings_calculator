@@ -42,7 +42,44 @@ With each team ranked according to total points, calculated as:
 
 ## Use of Standings class directly
 
-It's also perfectly fine to use the ```Standings``` class independent of the command-line tool.  
-Like so:
+It's also perfectly fine to use the ```Standings``` class independent of the command-line tool.
+Standings accepts one parameter, an array of +games+, 
+which only needs to respond to a few methods (see Game.rb)
+Example: 
+
+```
+game = Game.new("USA 1, Canada 0")
+game_two = Game.new("Brazil 4, Germany 1")
+game_three = Game.new("USA 3, Italy 3")
+
+games = [game, game_two, game_three]
+
+standings = Standings.new(games)
+
+# To print to console:
+standings.to_s
+
+# To print to file:
+standings.print_to_file
+```
+
+Standings#to_s also accepts a block which yields necessary information to build each standing line:
+Place = ranking in standings
+Team = Team Name
+Score = Team Score in Standings
+Ending = Pluralize or singular 'pt'
+
+```
+standings.to_s do |place, team, score, ending|
+  # maybe you want the standings score first?
+end
+```
 
 
+## Tests
+
+All tests are in the /tests directory, written in Minitest. 
+Run them in the usual manner:
+```
+ruby tests/*
+```
